@@ -5,3 +5,4 @@
 * the project will now most likely be done in react, still reading the lessons aheadgit 
 * reading about and setting up Firebase account
 * taking a lunch break
+* back from the break, continuing with firebase reading
