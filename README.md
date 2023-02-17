@@ -1,0 +1,1 @@
+* considering building backend with aspnet core and frontend with react, watching a video on example build
