@@ -4,3 +4,4 @@
 * still reading lessons on NOSQL
 * the project will now most likely be done in react, still reading the lessons aheadgit 
 * reading about and setting up Firebase account
+* taking a lunch break
