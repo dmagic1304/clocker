@@ -7,3 +7,4 @@
 * taking a lunch break
 * back from the break, continuing with firebase reading
 * initialized react project
+* reaserching react functionalities with firebase
