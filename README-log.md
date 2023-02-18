@@ -9,3 +9,4 @@
 * initialized react project
 * reaserching react functionalities with firebase
 * still reading firebase instructions, the project will definitely use NoSql 
+* reading on CRUD functionality with nosql and react
