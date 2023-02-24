@@ -22,12 +22,14 @@
 * reading on CRUD functionality with nosql and react
 * finished with the reading on CRUD with NoSql, starting to writhe the capstone-proposal
 
+
 **Friday 02/24**
 
 * designing the basic layout for the webapp in Figma
 * still designing the look of the app and trying to plan out the components necessary
 * reasherching the best way to implement authentication for future roles implementation goal
 * still looking into authentication options. Firebase seems easiest but I am not sure if it will work well with roles
+* installed react router and created nav component. I will most likely go with firebase NoSql and authentication
 
 ## Technologies Used
 
