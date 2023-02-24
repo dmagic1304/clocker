@@ -31,6 +31,7 @@
 * still looking into authentication options. Firebase seems easiest but I am not sure if it will work well with roles
 * installed react router and created nav component. I will most likely go with firebase NoSql and authentication
 * added basic navigation links, I will implement authorization later
+* Reaserching how to best utilize NoSql to implement clock in
 
 ## Technologies Used
 
