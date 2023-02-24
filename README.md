@@ -32,6 +32,7 @@
 * installed react router and created nav component. I will most likely go with firebase NoSql and authentication
 * added basic navigation links, I will implement authorization later
 * Reaserching how to best utilize NoSql to implement clock in
+* Lunch break, Still reaserching the best way to utilize nosql for easy query
 
 ## Technologies Used
 
