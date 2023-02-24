@@ -2,7 +2,7 @@ import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import SignIn from './components/SignIn';
-import MainControl from './components/MainControl';
+import HomePage from './components/HomePage';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/">
-            <Route index element={<MainControl />}></Route>
+            <Route index element={<HomePage />}></Route>
           </Route>
 
           <Route path="/SignIn">
