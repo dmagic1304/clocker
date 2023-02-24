@@ -22,6 +22,10 @@
 * reading on CRUD functionality with nosql and react
 * finished with the reading on CRUD with NoSql, starting to writhe the capstone-proposal
 
+**Friday 02/24**
+
+* designing the basic layout for the webapp in Figma
+
 ## Technologies Used
 
 * Application development still in progress
