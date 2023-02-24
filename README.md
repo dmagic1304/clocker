@@ -27,6 +27,7 @@
 * designing the basic layout for the webapp in Figma
 * still designing the look of the app and trying to plan out the components necessary
 * reasherching the best way to implement authentication for future roles implementation goal
+* still looking into authentication options. Firebase seems easiest but I am not sure if it will work well with roles
 
 ## Technologies Used
 
