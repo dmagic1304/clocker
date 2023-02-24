@@ -26,6 +26,7 @@
 
 * designing the basic layout for the webapp in Figma
 * still designing the look of the app and trying to plan out the components necessary
+* reasherching the best way to implement authentication for future roles implementation goal
 
 ## Technologies Used
 
