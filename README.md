@@ -34,6 +34,7 @@
 * Reaserching how to best utilize NoSql to implement clock in
 * Lunch break, Still reaserching the best way to utilize nosql for easy query
 * Break over, still looking into nosql
+* looking into date-fns to see if I can use that library for my clock in functions
 
 ## Technologies Used
 
