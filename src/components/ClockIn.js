@@ -2,6 +2,10 @@ import React from 'react'
 
 export default function ClockIn() {
   return (
-    <div>ClockIn</div>
+    <div>
+      Welcome "name"  {/*get user name from authorization */}
+      //date time//
+      <button >Clock in</button>
+    </div>
   )
 }
