@@ -35,6 +35,7 @@
 * Lunch break, Still reaserching the best way to utilize nosql for easy query
 * Break over, still looking into nosql
 * looking into date-fns to see if I can use that library for my clock in functions
+* installed date-fns and implemented in clockin component
 
 ## Technologies Used
 
