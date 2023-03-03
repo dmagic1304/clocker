@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { format, intervalToDuration } from 'date-fns';
 import { db, auth } from './../firebase';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, getDocs, orderBy, limit } from 'firebase/firestore';
+import { async } from '@firebase/util';
 
 export default function ClockIn() {
   const [user, setUser] = useState(null);
@@ -14,6 +15,18 @@ export default function ClockIn() {
   // const clockInTime = format(new Date(), 'Pp');
 
   useEffect(() => {
+    const collectionRef = collection(db, "user");
+    const query = query(collectionRef, orderBy("ClockIn", "desc"), limit(1));
+    const snapshot = getDocs(query);
+
+    snapshot.forEach(doc => {
+      setClockInTime(doc.data().ClockIn);
+      setWorking(true);
+    });
+
+  }, []);
+
+  useEffect(() => {
     let interval;
 
     if (working) {
@@ -24,15 +37,17 @@ export default function ClockIn() {
     return () => clearInterval(interval);
   }, [working]);
 
-  const handleClockIn = () => {
+  const handleClockIn = async () => {
     setClockInTime(new Date());
+    const collectionRef = collection(db, "user");
+    await addDoc(collectionRef, { ClockIn: new Date(), ClockOut: null });
     setWorking(true);
   }
 
-  const handleClockOut = async (newClockIn) => {
+  const handleClockOut = async () => {
     const collectionRef = collection(db, "user");
-    await addDoc(collectionRef, newClockIn);
-    console.log("succesfull db");
+    await addDoc(collectionRef, { ClockIn: clockInTime, ClockOut: new Date() });
+    setWorking(false);
   }
 
 
