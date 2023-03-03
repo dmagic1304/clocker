@@ -8,10 +8,21 @@ export default function ClockIn() {
   const [clockInTime, setClockInTime] = useState(null);
   const [clockOutTime, setClockOutTime] = useState(null);
   const [working, setWorking] = useState(false);
+  const [elapsedTime, setElapsedTime] = useState(0)
 
 
   // const clockInTime = format(new Date(), 'Pp');
 
+  useEffect(() => {
+    let interval;
+
+    if (working) {
+      interval = setInterval(() => {
+        setElapsedTime(intervalToDuration({ start: clockInTime, end: new Date() }))
+      })
+    }
+    return () => clearInterval(interval);
+  }, [working]);
 
   const handleClockIn = () => {
     setClockInTime(new Date());
@@ -21,15 +32,15 @@ export default function ClockIn() {
   const handleClockOut = async (newClockIn) => {
     const collectionRef = collection(db, "user");
     await addDoc(collectionRef, newClockIn);
-    console.log("test");
+    console.log("succesfull db");
   }
 
 
   if (working) {
     return (
       <div>
-        <span>Curernt working hours:{JSON.stringify(intervalToDuration({ start: clockInTime, end: new Date() }))}</span>
-        <span>Current time: {JSON.stringify(format(new Date(), 'Pp'))}</span>
+        <span>Clocked in for:{`${elapsedTime.hours} hours, ${elapsedTime.minutes} minutes and ${elapsedTime.seconds} seconds`}</span>
+        <span>Current time: {format(new Date(), 'Pp')}</span>
         <button onClick={() => handleClockOut()}>Clock out</button>
       </div>
     )
