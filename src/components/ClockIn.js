@@ -14,9 +14,9 @@ export default function ClockIn() {
 
   // const clockInTime = format(new Date(), 'Pp');
 
-  useEffect(() => {
+  useEffect(async () => {
     const collectionRef = collection(db, "user");
-    const query = query(collectionRef, orderBy("ClockIn", "desc"), limit(1));
+    const query = await query(collectionRef, orderBy("ClockIn", "desc"), limit(1));
     const snapshot = getDocs(query);
 
     snapshot.forEach(doc => {
