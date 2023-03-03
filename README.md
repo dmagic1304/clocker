@@ -37,6 +37,10 @@
 * looking into date-fns to see if I can use that library for my clock in functions
 * installed date-fns and implemented in clockin component
 
+**Friday 03/03**
+
+* resuming to work on basic UI
+
 ## Technologies Used
 
 * Application development still in progress
