@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { format, intervalToDuration } from 'date-fns';
 import { db, auth } from './../firebase';
 import { addDoc, collection, getDocs, orderBy, limit, query } from 'firebase/firestore';
-import { async } from '@firebase/util';
 
 export default function ClockIn() {
   const [user, setUser] = useState(null);
   const [clockInTime, setClockInTime] = useState(null);
-  const [clockOutTime, setClockOutTime] = useState(null);
   const [working, setWorking] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0)
 

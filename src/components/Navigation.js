@@ -11,6 +11,9 @@ export default function Navigation() {
       <NavLink to="/SignIn">
         Sign In
       </NavLink>
+      <NavLink to="/Profile">
+        Profile
+      </NavLink>
     </nav>
   )
 }
