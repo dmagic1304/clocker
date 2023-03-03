@@ -1,7 +1,8 @@
 import React from 'react'
+import ClockIn from './ClockIn'
 
 export default function Profile() {
   return (
-    <div>Profile</div>
+    <ClockIn />
   )
 }
