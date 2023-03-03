@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { format, intervalToDuration } from 'date-fns';
 import { db, auth } from './../firebase';
-import { addDoc, collection, getDocs, orderBy, limit } from 'firebase/firestore';
+import { addDoc, collection, getDocs, orderBy, limit, query } from 'firebase/firestore';
 import { async } from '@firebase/util';
 
 export default function ClockIn() {
@@ -14,16 +14,18 @@ export default function ClockIn() {
 
   // const clockInTime = format(new Date(), 'Pp');
 
-  useEffect(async () => {
+  const previousStatus = async () => {
     const collectionRef = collection(db, "user");
-    const query = await query(collectionRef, orderBy("ClockIn", "desc"), limit(1));
-    const snapshot = getDocs(query);
-
+    const q = query(collectionRef, orderBy("ClockIn", "desc"), limit(1));
+    const snapshot = await getDocs(q);
     snapshot.forEach(doc => {
-      setClockInTime(doc.data().ClockIn);
+      setClockInTime(doc.data().ClockIn.toDate());
       setWorking(true);
     });
+  }
 
+  useEffect(() => {
+    previousStatus()
   }, []);
 
   useEffect(() => {
