@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { db } from './../firebase'
-import { collection, query, where, onSnapshot, getDocs } from 'firebase/firestore';
+import React, { useState, useEffect } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import { db } from './../firebase';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
-export default function Calendar() {
+
+export default function UserCalendar() {
   const [timestamps, setTimestamps] = useState([]);
   const [error, setError] = useState(null);
 
@@ -17,7 +20,6 @@ export default function Calendar() {
         ClockOut: doc.data().ClockOut.toDate()
       });
     });
-    console.log('times st ' + timestamps)
     setTimestamps(times);
   }
 
@@ -29,12 +31,7 @@ export default function Calendar() {
 
   return (
     <div>
-      {timestamps.map((stamp, index) => (
-        <div key={index}>
-          <p>{stamp.ClockIn.toString()}</p>
-          <p>{stamp.ClockOut.toString()}</p>
-        </div>
-      ))}
+      <Calendar />
     </div>
   )
 }

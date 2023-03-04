@@ -40,6 +40,7 @@
 **Friday 03/03**
 
 * resuming to work on basic UI
+* researching how to display the clock in data using react-calendar 
 
 ## Technologies Used
 

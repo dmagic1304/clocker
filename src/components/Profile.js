@@ -1,12 +1,12 @@
 import React from 'react'
-import Calendar from './Calendar'
+import UserCalendar from './UserCalendar'
 import ClockIn from './ClockIn'
 
 export default function Profile() {
   return (
     <div>
       <ClockIn />
-      <Calendar />
+      <UserCalendar />
     </div>
   )
 }
