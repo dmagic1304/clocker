@@ -42,6 +42,10 @@
 * resuming to work on basic UI
 * researching how to display the clock in data using react-calendar 
 
+**Monday 03/06**
+
+* watching a video on creating a dashboard view in React with MUI https://www.youtube.com/watch?v=wYpCWwD1oz0&ab_channel=EdRoh
+
 ## Technologies Used
 
 * Application development still in progress
