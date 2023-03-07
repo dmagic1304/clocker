@@ -46,6 +46,9 @@
 
 * watching a video on creating a dashboard view in React with MUI https://www.youtube.com/watch?v=wYpCWwD1oz0&ab_channel=EdRoh
 
+Tuesday 03/07
+
+continuing to work on dashnoard view
 ## Technologies Used
 
 * Application development still in progress
