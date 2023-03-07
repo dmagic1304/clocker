@@ -86,7 +86,7 @@ const Calendar = () => {
         />
       </Box>
     </Box>
-    </Box >
+
   );
 };
 
