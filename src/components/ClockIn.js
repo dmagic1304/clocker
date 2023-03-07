@@ -14,11 +14,13 @@ export default function ClockIn() {
 
   const previousStatus = async () => {
     const collectionRef = collection(db, "user");
-    const q = query(collectionRef, orderBy("ClockIn", "desc"), limit(1));
+    const q = query(collectionRef, orderBy("TimeStamp", "desc"), limit(1));
     const snapshot = await getDocs(q);
     snapshot.forEach(doc => {
-      setClockInTime(doc.data().ClockIn.toDate());
-      setWorking(true);
+      if (doc.data().ClockOut === null) {
+        setClockInTime(doc.data().ClockIn.toDate());
+        setWorking(true);
+      }
     });
   }
 
@@ -40,13 +42,14 @@ export default function ClockIn() {
   const handleClockIn = async () => {
     setClockInTime(new Date());
     const collectionRef = collection(db, "user");
-    await addDoc(collectionRef, { ClockIn: new Date(), ClockOut: null });
+    await addDoc(collectionRef, { ClockIn: new Date(), ClockOut: null, TimeStamp: new Date() });
     setWorking(true);
   }
 
   const handleClockOut = async () => {
     const collectionRef = collection(db, "user");
-    await addDoc(collectionRef, { ClockIn: clockInTime, ClockOut: new Date() });
+    await addDoc(collectionRef, { ClockIn: clockInTime, ClockOut: new Date(), TimeStamp: new Date() });
+    setClockInTime(null);
     setWorking(false);
   }
 
