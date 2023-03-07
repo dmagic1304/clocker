@@ -86,7 +86,6 @@ const Calendar = () => {
   const colors = tokens(theme.palette.mode);
   const [timestamps, setTimestamps] = useState([]);
   const [initialEvents, setInitialEvents] = useState([]);
-  const [initialEventsFetched, setInitialEventsFetched] = useState(false);
 
   const timesQuery = async () => {
     const times = [];
@@ -114,7 +113,6 @@ const Calendar = () => {
       end: formatDate(ClockOut, { timeZone: "UTC" }),
     }));
     setInitialEvents(events);
-    setInitialEventsFetched(true);
   }, [timestamps]);
 
   const handleDateClick = (selected) => {
@@ -143,14 +141,8 @@ const Calendar = () => {
     }
   };
 
-  if (!initialEventsFetched) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <Box m="20px">
-
-      {/* CALENDAR */}
       <Box flex="1 1 100%" ml="15px">
         <FullCalendar
           height="75vh"
@@ -177,7 +169,6 @@ const Calendar = () => {
         />
       </Box>
     </Box>
-
   );
 };
 
