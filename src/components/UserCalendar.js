@@ -82,10 +82,9 @@ import {
 import { tokens } from "./../theme";
 
 const Calendar = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  // const theme = useTheme();
+  // const colors = tokens(theme.palette.mode);
   const [timestamps, setTimestamps] = useState([]);
-  const [initialEvents, setInitialEvents] = useState([]);
 
   const timesQuery = async () => {
     const times = [];
@@ -105,15 +104,12 @@ const Calendar = () => {
     timesQuery();
   }, []);
 
-  useEffect(() => {
-    const events = timestamps.map(({ ClockIn, ClockOut }) => ({
-      id: `${ClockIn}-${ClockOut}`,
-      title: "Shift",
-      start: formatDate(ClockIn, { timeZone: "UTC" }),
-      end: formatDate(ClockOut, { timeZone: "UTC" }),
-    }));
-    setInitialEvents(events);
-  }, [timestamps]);
+  const events = timestamps.map(({ ClockIn, ClockOut }) => ({
+    id: `${ClockIn}-${ClockOut}`,
+    title: "Shift",
+    start: ClockIn,
+    end: ClockOut,
+  }));
 
   const handleDateClick = (selected) => {
     const title = prompt("Please enter a new title for your event");
@@ -162,10 +158,9 @@ const Calendar = () => {
           selectable={true}
           selectMirror={true}
           dayMaxEvents={true}
+          events={events}
           select={handleDateClick}
           eventClick={handleEventClick}
-          eventsSet={(events) => setTimestamps(events)}
-          initialEvents={initialEvents}
         />
       </Box>
     </Box>
@@ -173,3 +168,4 @@ const Calendar = () => {
 };
 
 export default Calendar;
+
