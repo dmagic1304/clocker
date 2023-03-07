@@ -65,7 +65,8 @@
 import { db } from './../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { useState, useEffect } from "react";
-import FullCalendar, { formatDate } from "@fullcalendar/react";
+import FullCalendar from "@fullcalendar/react";
+import { formatDate } from '@fullcalendar/core'
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -84,6 +85,7 @@ const Calendar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [timestamps, setTimestamps] = useState([]);
+  const [initialEvents, setInitialEvents] = useState([]);
 
 
   const timesQuery = async () => {
@@ -103,6 +105,17 @@ const Calendar = () => {
   useEffect(() => {
     timesQuery();
   }, []);
+
+  useEffect(() => {
+    const events = timestamps.map(({ ClockIn, ClockOut }) => ({
+      id: `${ClockIn}-${ClockOut}`,
+      title: "Shift",
+      start: formatDate(ClockIn, { timeZone: "UTC" }),
+      end: formatDate(ClockOut, { timeZone: "UTC" }),
+    }));
+    console.log("events" + events[0])
+    setInitialEvents(events);
+  }, [timestamps]);
 
   const handleDateClick = (selected) => {
     const title = prompt("Please enter a new title for your event");
@@ -156,7 +169,7 @@ const Calendar = () => {
           select={handleDateClick}
           eventClick={handleEventClick}
           eventsSet={(events) => setTimestamps(events)}
-          initialEvents={timestamps}
+          initialEvents={initialEvents}
         />
       </Box>
     </Box>
