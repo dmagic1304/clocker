@@ -46,9 +46,11 @@
 
 * watching a video on creating a dashboard view in React with MUI https://www.youtube.com/watch?v=wYpCWwD1oz0&ab_channel=EdRoh
 
-Tuesday 03/07
+**Tuesday 03/07**
 
-continuing to work on dashnoard view
+* continuing to work on dashnoard view
+* still watching the video https://www.youtube.com/watch?v=wYpCWwD1oz0&ab_channel=EdRoh to implement calendar and dashboard into the project
+
 ## Technologies Used
 
 * Application development still in progress
