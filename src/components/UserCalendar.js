@@ -36,23 +36,6 @@ const Calendar = () => {
     timesQuery();
   }, []);
 
-  useEffect(() => {
-    if (calendarRef.current) {
-      const calendarApi = calendarRef.current.getApi();
-      const view = calendarApi.view;
-      const start = view.activeStart;
-      const end = view.activeEnd;
-
-      const monthTimestamps = timestamps.filter(({ ClockIn }) =>
-        ClockIn >= start && ClockIn < end
-      );
-      const totalHoursWorked = monthTimestamps.reduce(
-        (accumulator, { HoursWorked }) => accumulator + (HoursWorked || 0),
-        0
-      );
-      setHoursWorked(totalHoursWorked);
-    }
-  }, []);
 
 
   const events = timestamps.map(({ ClockIn, ClockOut, HoursWorked }) => ({
@@ -70,6 +53,30 @@ const Calendar = () => {
       </div>
     );
   };
+
+  const calculateHoursWorked = () => {
+    if (calendarRef.current) {
+      const view = calendarRef.current.getApi().view;
+      const start = view.activeStart;
+      const end = view.activeEnd;
+
+      const eventsInCurrentView = events.filter((event) => {
+        const eventStart = new Date(event.start);
+        const eventEnd = new Date(event.end);
+
+        return (
+          eventStart.getTime() >= start.getTime() &&
+          eventEnd.getTime() <= end.getTime()
+        );
+      });
+
+      const hours = eventsInCurrentView.reduce((acc, event) => {
+        return acc + event.extendedProps.HoursWorked;
+      }, 0);
+
+      setHoursWorked(hours);
+    }
+  }
 
 
 
@@ -96,6 +103,8 @@ const Calendar = () => {
           dayMaxEvents={true}
           eventContent={eventContent}
           events={events}
+          ref={calendarRef}
+          viewDidMount={calculateHoursWorked}
         // select={handleDateClick}
         // eventClick={handleEventClick}
         />
