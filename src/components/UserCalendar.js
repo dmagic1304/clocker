@@ -14,6 +14,7 @@ const Calendar = () => {
   // const theme = useTheme();
   // const colors = tokens(theme.palette.mode);
   const [timestamps, setTimestamps] = useState([]);
+  const [hoursWorked, setHoursWorked] = useState(null);
 
   const timesQuery = async () => {
     const times = [];
@@ -33,6 +34,7 @@ const Calendar = () => {
   useEffect(() => {
     timesQuery();
   }, []);
+
 
   const events = timestamps.map(({ ClockIn, ClockOut, HoursWorked }) => ({
     id: `${ClockIn}-${ClockOut}`,
@@ -77,6 +79,7 @@ const Calendar = () => {
     }
   };
 
+
   return (
     <Box m="20px">
       <Box flex="1 1 100%" ml="15px">
@@ -94,7 +97,6 @@ const Calendar = () => {
             right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
           }}
           initialView="dayGridMonth"
-
           selectable={true}
           selectMirror={true}
           dayMaxEvents={true}
@@ -106,7 +108,7 @@ const Calendar = () => {
       </Box>
     </Box>
   );
-};
+}
 
 export default Calendar;
 
