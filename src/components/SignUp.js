@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { auth } from "./../firebase.js";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db, } from "./../firebase.js";
+import { collection, } from 'firebase/firestore';
+import { createUserWithEmailAndPassword, updateProfile, } from "firebase/auth";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -23,9 +24,16 @@ function SignUp() {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
+    const firstName = event.target.firstName.value;
+    const lastName = event.target.lastName.value;
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        setSignUpSuccess(`You've successfully signed up, ${userCredential.user.email}!`)
+        return updateProfile(userCredential.user, {
+          displayName: `${firstName} ${lastName}`
+        })
+      })
+      .then(() => {
+        setSignUpSuccess(`You've successfully signed up, ${firstName}!`)
       })
       .catch((error) => {
         setSignUpSuccess(`There was an error signing up: ${error.message}!`)
@@ -103,6 +111,7 @@ function SignUp() {
             >
               Sign Up
             </Button>
+            <Typography>{signUpSuccess}</Typography>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/SignIn" variant="body2">

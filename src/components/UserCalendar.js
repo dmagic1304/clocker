@@ -1,4 +1,4 @@
-import { db } from './../firebase';
+import { db, auth } from './../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { useState, useEffect, useRef } from "react";
 import FullCalendar from "@fullcalendar/react";
@@ -19,7 +19,7 @@ const Calendar = () => {
 
   const timesQuery = async () => {
     const times = [];
-    const collectionRef = collection(db, 'user');
+    const collectionRef = collection(db, `${auth.currentUser.displayName}`);
     const q = query(collectionRef, where('ClockOut', '!=', null));
     const snapshot = await getDocs(q);
     snapshot.forEach((doc) => {

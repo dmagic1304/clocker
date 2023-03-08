@@ -36,7 +36,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
-const user = auth.currentUser;
+
 
 const Sidebar = () => {
   const theme = useTheme();
@@ -100,7 +100,7 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Name
+                  {auth.currentUser.displayName}
                 </Typography>
               </Box>
             </Box>

@@ -13,7 +13,7 @@ export default function ClockIn() {
   // const clockInTime = format(new Date(), 'Pp');
 
   const previousStatus = async () => {
-    const collectionRef = collection(db, "user");
+    const collectionRef = collection(db, `${auth.currentUser.displayName}`);
     const q = query(collectionRef, orderBy("TimeStamp", "desc"), limit(1));
     const snapshot = await getDocs(q);
     snapshot.forEach(doc => {
@@ -41,13 +41,13 @@ export default function ClockIn() {
 
   const handleClockIn = async () => {
     setClockInTime(new Date());
-    const collectionRef = collection(db, "user");
+    const collectionRef = collection(db, `${auth.currentUser.displayName}`);
     await addDoc(collectionRef, { ClockIn: new Date(), ClockOut: null, TimeStamp: new Date(), HoursWorked: null });
     setWorking(true);
   }
 
   const handleClockOut = async () => {
-    const collectionRef = collection(db, "user");
+    const collectionRef = collection(db, `${auth.currentUser.displayName}`);
     let hoursWorked = differenceInHours(
       new Date(),
       clockInTime
