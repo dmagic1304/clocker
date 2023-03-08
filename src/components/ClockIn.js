@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { format, intervalToDuration } from 'date-fns';
+import { format, intervalToDuration, differenceInHours, differenceInSeconds } from 'date-fns';
 import { db, auth } from './../firebase';
 import { addDoc, collection, getDocs, orderBy, limit, query } from 'firebase/firestore';
 
@@ -42,13 +42,18 @@ export default function ClockIn() {
   const handleClockIn = async () => {
     setClockInTime(new Date());
     const collectionRef = collection(db, "user");
-    await addDoc(collectionRef, { ClockIn: new Date(), ClockOut: null, TimeStamp: new Date() });
+    await addDoc(collectionRef, { ClockIn: new Date(), ClockOut: null, TimeStamp: new Date(), HoursWorked: null });
     setWorking(true);
   }
 
   const handleClockOut = async () => {
     const collectionRef = collection(db, "user");
-    await addDoc(collectionRef, { ClockIn: clockInTime, ClockOut: new Date(), TimeStamp: new Date() });
+    let hoursWorked = differenceInHours(
+      new Date(),
+      clockInTime
+    )
+    console.log(hoursWorked)
+    await addDoc(collectionRef, { ClockIn: clockInTime, ClockOut: new Date(), TimeStamp: new Date(), HoursWorked: hoursWorked });
     setClockInTime(null);
     setWorking(false);
   }
