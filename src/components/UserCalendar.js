@@ -1,8 +1,8 @@
 import { db } from './../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import FullCalendar from "@fullcalendar/react";
-import { formatDate } from '@fullcalendar/core'
+import { formatDate, getDate, getApi, startOfMonth, endOfMonth } from '@fullcalendar/core'
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -15,6 +15,7 @@ const Calendar = () => {
   // const colors = tokens(theme.palette.mode);
   const [timestamps, setTimestamps] = useState([]);
   const [hoursWorked, setHoursWorked] = useState(null);
+  const calendarRef = useRef(null);
 
   const timesQuery = async () => {
     const times = [];
@@ -35,6 +36,24 @@ const Calendar = () => {
     timesQuery();
   }, []);
 
+  useEffect(() => {
+    if (calendarRef.current) {
+      const calendarApi = calendarRef.current.getApi();
+      const view = calendarApi.view;
+      const start = view.activeStart;
+      const end = view.activeEnd;
+
+      const monthTimestamps = timestamps.filter(({ ClockIn }) =>
+        ClockIn >= start && ClockIn < end
+      );
+      const totalHoursWorked = monthTimestamps.reduce(
+        (accumulator, { HoursWorked }) => accumulator + (HoursWorked || 0),
+        0
+      );
+      setHoursWorked(totalHoursWorked);
+    }
+  }, []);
+
 
   const events = timestamps.map(({ ClockIn, ClockOut, HoursWorked }) => ({
     id: `${ClockIn}-${ClockOut}`,
@@ -42,7 +61,6 @@ const Calendar = () => {
     start: ClockIn,
     end: ClockOut,
     HoursWorked: HoursWorked
-
   }));
 
   const eventContent = (eventInfo) => {
@@ -53,31 +71,7 @@ const Calendar = () => {
     );
   };
 
-  const handleDateClick = (selected) => {
-    const title = prompt("Please enter a new title for your event");
-    const calendarApi = selected.view.calendar;
-    calendarApi.unselect();
 
-    if (title) {
-      calendarApi.addEvent({
-        id: `${selected.dateStr}-${title}`,
-        title,
-        start: selected.startStr,
-        end: selected.endStr,
-        allDay: selected.allDay,
-      });
-    }
-  };
-
-  const handleEventClick = (selected) => {
-    if (
-      window.confirm(
-        `Are you sure you want to delete the event '${selected.event.title}'`
-      )
-    ) {
-      selected.event.remove();
-    }
-  };
 
 
   return (
@@ -102,9 +96,12 @@ const Calendar = () => {
           dayMaxEvents={true}
           eventContent={eventContent}
           events={events}
-          select={handleDateClick}
-          eventClick={handleEventClick}
+        // select={handleDateClick}
+        // eventClick={handleEventClick}
         />
+      </Box>
+      <Box>
+        <p>{hoursWorked}hours</p>
       </Box>
     </Box>
   );
@@ -112,3 +109,28 @@ const Calendar = () => {
 
 export default Calendar;
 
+// const handleDateClick = (selected) => {
+//   const title = prompt("Please enter a new title for your event");
+//   const calendarApi = selected.view.calendar;
+//   calendarApi.unselect();
+
+//   if (title) {
+//     calendarApi.addEvent({
+//       id: `${selected.dateStr}-${title}`,
+//       title,
+//       start: selected.startStr,
+//       end: selected.endStr,
+//       allDay: selected.allDay,
+//     });
+//   }
+// };
+
+// const handleEventClick = (selected) => {
+//   if (
+//     window.confirm(
+//       `Are you sure you want to delete the event '${selected.event.title}'`
+//     )
+//   ) {
+//     selected.event.remove();
+//   }
+// };
