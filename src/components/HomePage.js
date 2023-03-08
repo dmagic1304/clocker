@@ -1,4 +1,5 @@
 import React from 'react'
+import Sidebar from './Sidebar'
 import SignUp from './SignUp'
 
 export default function HomePage() {
@@ -6,6 +7,7 @@ export default function HomePage() {
     <div>
       <span>image</span>
       <SignUp />
+      <Sidebar />
     </div>
   )
 }
