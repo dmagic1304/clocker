@@ -60,6 +60,7 @@ const Calendar = () => {
       const view = calendarRef.current.getApi().view;
       const start = view.activeStart;
       const end = view.activeEnd;
+      console.log("test" + calendarRef.current);
 
       const eventsInCurrentView = events.filter((event) => {
         const eventStart = new Date(event.start);
