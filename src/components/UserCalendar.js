@@ -55,13 +55,12 @@ const Calendar = () => {
   };
 
   const calculateHoursWorked = () => {
-    console.log("test" + calendarRef.current);
-    if (calendarRef.current.getApi().view) {
+    if (calendarRef.current) {
       const view = calendarRef.current.getApi().view;
       const start = view.activeStart;
       const end = view.activeEnd;
-      console.log("test" + calendarRef.current);
 
+      console.log("test" + events);
       const eventsInCurrentView = events.filter((event) => {
         const eventStart = new Date(event.start);
         const eventEnd = new Date(event.end);
@@ -73,11 +72,15 @@ const Calendar = () => {
       });
 
       const hours = eventsInCurrentView.reduce((acc, event) => {
-        return acc + event.extendedProps.HoursWorked;
+        return acc + event.HoursWorked;
       }, 0);
 
       setHoursWorked(hours);
     }
+  }
+
+  const handleDateClick = (arg) => {
+    calculateHoursWorked();
   }
 
 
@@ -85,32 +88,35 @@ const Calendar = () => {
 
   return (
     <Box m="20px">
-      <Box flex="1 1 100%" ml="15px">
-        <FullCalendar
-          height="75vh"
-          plugins={[
-            dayGridPlugin,
-            timeGridPlugin,
-            interactionPlugin,
-            listPlugin,
-          ]}
-          headerToolbar={{
-            left: "prev,next today",
-            center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
-          }}
-          initialView="dayGridMonth"
-          selectable={true}
-          selectMirror={true}
-          dayMaxEvents={true}
-          eventContent={eventContent}
-          events={events}
-          ref={calendarRef}
-          viewDidMount={calculateHoursWorked}
-        // select={handleDateClick}
-        // eventClick={handleEventClick}
-        />
-      </Box>
+      {events.length > 0 && (
+        <Box flex="1 1 100%" ml="15px">
+          <FullCalendar
+            height="75vh"
+            plugins={[
+              dayGridPlugin,
+              timeGridPlugin,
+              interactionPlugin,
+              listPlugin,
+            ]}
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
+            }}
+            initialView="dayGridMonth"
+            selectable={true}
+            selectMirror={true}
+            dayMaxEvents={true}
+            eventContent={eventContent}
+            events={events}
+            ref={calendarRef}
+            viewDidMount={calculateHoursWorked}
+            dateClick={handleDateClick}
+          // select={handleDateClick}
+          // eventClick={handleEventClick}
+          />
+        </Box>
+      )}
       <Box>
         <p>{hoursWorked}hours</p>
       </Box>
