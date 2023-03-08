@@ -1,12 +1,12 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import SignUp from './SignUp'
+import SignIn from './SignIn'
 
 export default function HomePage() {
   return (
     <div>
       <span>image</span>
-      <SignUp />
+      <SignIn />
       <Sidebar />
     </div>
   )

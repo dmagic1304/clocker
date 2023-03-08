@@ -51,6 +51,10 @@
 * continuing to work on dashnoard view
 * still watching the video https://www.youtube.com/watch?v=wYpCWwD1oz0&ab_channel=EdRoh to implement calendar and dashboard into the project
 
+**Tuesday 03/07**
+
+* working on getting the total work hours for the week/month *
+
 ## Technologies Used
 
 * Application development still in progress
