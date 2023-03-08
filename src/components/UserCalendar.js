@@ -111,7 +111,6 @@ const Calendar = () => {
             events={events}
             ref={calendarRef}
             viewDidMount={calculateHoursWorked}
-            dateClick={handleDateClick}
           // select={handleDateClick}
           // eventClick={handleEventClick}
           />
