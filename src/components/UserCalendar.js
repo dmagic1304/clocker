@@ -55,7 +55,8 @@ const Calendar = () => {
   };
 
   const calculateHoursWorked = () => {
-    if (calendarRef.current) {
+    console.log("test" + calendarRef.current);
+    if (calendarRef.current.getApi().view) {
       const view = calendarRef.current.getApi().view;
       const start = view.activeStart;
       const end = view.activeEnd;
