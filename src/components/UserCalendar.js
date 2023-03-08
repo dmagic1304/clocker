@@ -24,6 +24,7 @@ const Calendar = () => {
       times.push({
         ClockIn: doc.data().ClockIn.toDate(),
         ClockOut: doc.data().ClockOut.toDate(),
+        HoursWorked: doc.data().HoursWorked
       });
     });
     setTimestamps(times);
@@ -33,12 +34,22 @@ const Calendar = () => {
     timesQuery();
   }, []);
 
-  const events = timestamps.map(({ ClockIn, ClockOut }) => ({
+  const events = timestamps.map(({ ClockIn, ClockOut, HoursWorked }) => ({
     id: `${ClockIn}-${ClockOut}`,
     title: "Shift",
     start: ClockIn,
     end: ClockOut,
+    HoursWorked: HoursWorked
+
   }));
+
+  const eventContent = (eventInfo) => {
+    return (
+      <div>
+        <p>{eventInfo.event.extendedProps.HoursWorked} hours worked</p>
+      </div>
+    );
+  };
 
   const handleDateClick = (selected) => {
     const title = prompt("Please enter a new title for your event");
@@ -87,6 +98,7 @@ const Calendar = () => {
           selectable={true}
           selectMirror={true}
           dayMaxEvents={true}
+          eventContent={eventContent}
           events={events}
           select={handleDateClick}
           eventClick={handleEventClick}
