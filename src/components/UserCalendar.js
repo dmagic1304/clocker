@@ -115,6 +115,7 @@ const Calendar = () => {
             ref={calendarRef}
             viewDidMount={calculateHoursWorked}
             select={handleDateClick}
+            editable={true}
           // eventClick={handleEventClick}
           />
         </Box>

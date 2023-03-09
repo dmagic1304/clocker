@@ -96,7 +96,7 @@ export default function Profile() {
               <Typography variant='h4' >
                 {weekWorked}
               </Typography>
-              <button onClick={deleteDocuments}>Delete null data</button>
+              {/* <button onClick={deleteDocuments}>Delete null data</button> */}
             </Grid>
             <Grid item md={8}>
               <ClockIn />
