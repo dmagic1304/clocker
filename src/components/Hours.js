@@ -7,7 +7,7 @@ export default function Hours() {
 
   const timesQuery = async () => {
     const times = [];
-    const collectionRef = collection(db, `${auth.currentUser.displayName}`);
+    const collectionRef = collection(db, `${auth.currentUser.uid}`);
     const q = query(collectionRef, where('HoursWorked', '!=', null));
     const snapshot = await getDocs(q);
     snapshot.forEach((doc) => {

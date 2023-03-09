@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import ClockIn from './ClockIn'
 import { Box, Grid, Typography } from '@mui/material'
 import { auth, db } from '../firebase';
-import { collection, where, query, getDocs } from 'firebase/firestore';
+import { collection, where, query, getDocs, deleteDoc } from 'firebase/firestore';
 
 export default function Profile() {
 
@@ -12,7 +12,7 @@ export default function Profile() {
 
   const hoursQuery = async () => {
     const times = [];
-    const collectionRef = collection(db, `${auth.currentUser.displayName}`);
+    const collectionRef = collection(db, `${auth.currentUser.uid}`);
     const q = query(collectionRef, where('HoursWorked', '!=', null));
     const snapshot = await getDocs(q);
     snapshot.forEach((doc) => {
@@ -54,6 +54,21 @@ export default function Profile() {
     hoursQuery();
   }, []);
 
+  const deleteDocuments = async () => {
+    const collectionRef = collection(db, `${auth.currentUser.uid}`);
+    const q = query(collectionRef, where('HoursWorked', '==', 0));
+    const snapshot = await getDocs(q);
+    snapshot.forEach((doc) => {
+      deleteDoc(doc.ref);
+    });
+
+    const qNull = query(collectionRef, where('HoursWorked', '==', null));
+    const snapshotNull = await getDocs(qNull);
+    snapshotNull.forEach((doc) => {
+      deleteDoc(doc.ref);
+    });
+  };
+
 
 
 
@@ -76,6 +91,7 @@ export default function Profile() {
           <Typography variant='h4' >
             {weekWorked}
           </Typography>
+          <button onClick={deleteDocuments}>Delete null data</button>
         </Grid>
         <Grid item md={8}>
           <ClockIn />
