@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { format, intervalToDuration, differenceInHours, differenceInSeconds } from 'date-fns';
 import { db, auth } from './../firebase';
 import { addDoc, collection, getDocs, orderBy, limit, query } from 'firebase/firestore';
-import { Grid } from '@mui/material';
+import { Grid, Button, Typography } from '@mui/material';
 
 export default function ClockIn() {
   const [user, setUser] = useState(null);
@@ -63,9 +63,11 @@ export default function ClockIn() {
   if (working) {
     return (
       <div>
-        <span>Clocked in for:{`${elapsedTime.hours} hours, ${elapsedTime.minutes} minutes and ${elapsedTime.seconds} seconds`}</span>
-        <span>Current time: {format(new Date(), 'Pp')}</span>
-        <button onClick={() => handleClockOut()}>Clock out</button>
+        <Typography variant='h4'>Clocked in for: {`${elapsedTime.hours} hours, ${elapsedTime.minutes} minutes and ${elapsedTime.seconds} seconds`}</Typography>
+        <Typography variant='h4'>Current time: {format(new Date(), 'Pp')}</Typography>
+        <Button variant="contained" color="primary" onClick={() => handleClockOut()}>
+          Clock out
+        </Button>
       </div>
     )
   }
@@ -73,8 +75,10 @@ export default function ClockIn() {
   return (
     <div>
       <Grid container>
+        <Button variant="contained" color="primary" onClick={() => handleClockIn()}>
+          Clock in
+        </Button>
 
-        <button onClick={() => handleClockIn()}>Clock in</button>
       </Grid>
     </div>
   );
