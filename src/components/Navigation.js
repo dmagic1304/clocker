@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink } from "react-router-dom";
+import { Box, IconButton, useTheme } from "@mui/material";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 
 
 export default function Navigation() {
@@ -9,7 +11,9 @@ export default function Navigation() {
         Home
       </NavLink>
       <NavLink to="/SignIn">
-        Sign In
+        <IconButton>
+          <PersonOutlinedIcon />
+        </IconButton>
       </NavLink>
       <NavLink to="/Profile">
         Profile
