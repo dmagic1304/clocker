@@ -20,7 +20,6 @@ function App() {
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Calendar" element={<Calendar />} />
         </Routes>
-        <Footer />
       </Router>
     </div>
   );

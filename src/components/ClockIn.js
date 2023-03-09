@@ -73,7 +73,7 @@ export default function ClockIn() {
   return (
     <div>
       <Grid container>
-        Welcome {auth.currentUser.displayName}!
+
         <button onClick={() => handleClockIn()}>Clock in</button>
       </Grid>
     </div>
