@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
 
     <Box sx={{ mx: 4 }}>
-      <Box display="flex" justifyContent="space-between" p={2}>
+      <Box display="flex" justifyContent="space-between" p={2} alignItems="center" >
         <Box sx={{ justifyContent: 'center', borderRadius: 10, overflow: "hidden", }}>
           <img src={clockerimg} alt="clockerimg" />
         </Box>

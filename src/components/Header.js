@@ -26,7 +26,7 @@ const Header = () => {
 
   if (auth.currentUser == null) {
     return (
-      <Box display="flex" justifyContent="space-between" p={2} border={"solid"} height={100} >
+      <Box display="flex" justifyContent="space-between" p={2} height={100} style={{ background: "linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.2))" }} >
         <Box
           display="flex"
         >
@@ -50,7 +50,7 @@ const Header = () => {
   }
 
   return (
-    <Box display="flex" justifyContent="space-between" p={2} border={"solid"}>
+    <Box display="flex" justifyContent="space-between" p={2} style={{ background: "linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.2))" }}>
       <Box
         display="flex"
       >

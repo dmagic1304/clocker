@@ -21,6 +21,7 @@ function App() {
           <Route path="/Calendar" element={<Calendar />} />
         </Routes>
       </Router>
+      <Footer />
     </div>
   );
 }
