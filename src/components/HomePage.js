@@ -1,5 +1,4 @@
 import React from 'react'
-import Sidebar from './Sidebar'
 import SignIn from './SignIn'
 
 export default function HomePage() {
@@ -7,7 +6,7 @@ export default function HomePage() {
     <div>
       <span>image</span>
       <SignIn />
-      <Sidebar />
+
     </div>
   )
 }
