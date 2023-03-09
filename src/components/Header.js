@@ -6,7 +6,7 @@ import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
-import logo from '../assets/logo.png'
+import logo from '../assets/logo2.png'
 import { NavLink, useNavigate } from "react-router-dom";
 import { db, auth } from './../firebase.js'
 import { signOut } from "firebase/auth";
@@ -26,11 +26,11 @@ const Header = () => {
 
   if (auth.currentUser == null) {
     return (
-      <Box display="flex" justifyContent="space-between" p={2} border={"solid"}>
+      <Box display="flex" justifyContent="space-between" p={2} border={"solid"} height={100} >
         <Box
           display="flex"
         >
-          <img src={logo} alt="logo" height={100} />
+          <img src={logo} alt="logo" />
         </Box>
 
         <Box display="flex">

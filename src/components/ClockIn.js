@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { format, intervalToDuration, differenceInHours, differenceInSeconds } from 'date-fns';
 import { db, auth } from './../firebase';
 import { addDoc, collection, getDocs, orderBy, limit, query } from 'firebase/firestore';
-import { Grid, Button, Typography } from '@mui/material';
+import { Grid, Button, Typography, Box, Card, CardActions, CardContent } from '@mui/material';
 
 export default function ClockIn() {
   const [user, setUser] = useState(null);
@@ -62,42 +62,32 @@ export default function ClockIn() {
 
   if (working) {
     return (
-      <div>
-        <Typography variant='h4'>Clocked in for: {`${elapsedTime.hours} hours, ${elapsedTime.minutes} minutes and ${elapsedTime.seconds} seconds`}</Typography>
-        <Typography variant='h4'>Current time: {format(new Date(), 'Pp')}</Typography>
-        <Button variant="contained" color="primary" onClick={() => handleClockOut()}>
-          Clock out
-        </Button>
-      </div>
+      <Box justifyContent={'center'}>
+        <Card variant='outlined' sx={{
+          backgroundColor: "rgba(255, 255, 255, 0.5)",
+          padding: "1rem",
+        }}>
+          <CardContent>
+            <Typography variant='h4'>Clocked in for: {`${elapsedTime.hours} hours, ${elapsedTime.minutes} minutes and ${elapsedTime.seconds} seconds`}</Typography>
+            <Typography variant='h4'>Current time: {format(new Date(), 'Pp')}</Typography>
+            <Button variant="contained" color="primary" onClick={() => handleClockOut()}>
+              Clock out
+            </Button>
+          </CardContent>
+        </Card >
+      </Box>
     )
   }
 
   return (
-    <div>
-      <Grid container>
+    <Box>
+      <Grid container justifyContent={'center'} >
         <Button variant="contained" color="primary" onClick={() => handleClockIn()}>
           Clock in
         </Button>
-
       </Grid>
-    </div>
+    </Box>
   );
 }
 
 
-
-   // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((user) => {
-  //     if (user) {
-  //       setUser(user);
-  //     } else {
-  //       setUser(null);
-  //     }
-  //   });
-
-  //   return () => unsubscribe();
-  // }, []);
-
-  // if (!user) {
-  //   return <div>Loading...</div>;
-  // }

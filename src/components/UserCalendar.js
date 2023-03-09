@@ -7,12 +7,12 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { tokens } from "./../theme";
 
 const Calendar = () => {
-  // const theme = useTheme();
-  // const colors = tokens(theme.palette.mode);
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const [timestamps, setTimestamps] = useState([]);
   const [hoursWorked, setHoursWorked] = useState(null);
   const calendarRef = useRef(null);
@@ -116,9 +116,6 @@ const Calendar = () => {
           />
         </Box>
       )}
-      <Box>
-        <p>{hoursWorked}hours</p>
-      </Box>
     </Box>
   );
 }
