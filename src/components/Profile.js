@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import ClockIn from './ClockIn'
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Card, CardContent, Grid, Typography } from '@mui/material'
 import { auth, db } from '../firebase';
 import { collection, where, query, getDocs, deleteDoc } from 'firebase/firestore';
 
@@ -74,29 +74,37 @@ export default function Profile() {
 
   return (
     <Box sx={{ mt: 6 }}>
-      <Grid container>
-        <Grid item md={4}>
-          <Typography variant='h2'>
-            Welcome
-          </Typography>
-          <Typography variant='h2' sx={{ mb: 4 }}>
-            {auth.currentUser.displayName}!
-          </Typography>
-          <Typography variant='h5' sx={{ mb: 4 }} >
-            Total hours worked this month: {monthWorked}
-          </Typography>
-          <Typography variant='h5' >
-            Hours worked in current week:
-          </Typography>
-          <Typography variant='h4' >
-            {weekWorked}
-          </Typography>
-          <button onClick={deleteDocuments}>Delete null data</button>
-        </Grid>
-        <Grid item md={8}>
-          <ClockIn />
-        </Grid>
-      </Grid >
+      <Card variant='outlined' sx={{
+        backgroundColor: "rgba(255, 255, 255, 0.5)",
+        padding: "1rem",
+      }}>
+        <CardContent>
+          <Grid container>
+            <Grid item md={4}>
+              <Typography variant='h2'>
+                Welcome
+              </Typography>
+              <Typography variant='h2' sx={{ mb: 4 }}>
+                {auth.currentUser.displayName}!
+              </Typography>
+              <Typography variant='h5' sx={{ mb: 4 }} >
+                Total hours worked this month: {monthWorked}
+              </Typography>
+              <Typography variant='h5' >
+                Hours worked in current week:
+              </Typography>
+              <Typography variant='h4' >
+                {weekWorked}
+              </Typography>
+              <button onClick={deleteDocuments}>Delete null data</button>
+            </Grid>
+            <Grid item md={8}>
+              <ClockIn />
+            </Grid>
+          </Grid >
+        </CardContent>
+      </Card >
     </Box>
   )
 }
+
