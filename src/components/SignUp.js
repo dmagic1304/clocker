@@ -29,7 +29,7 @@ function SignUp() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         return updateProfile(userCredential.user, {
-          displayName: `${firstName} ${lastName}`
+          displayName: `${firstName}`
         })
       })
       .then(() => {

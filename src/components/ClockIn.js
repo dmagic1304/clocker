@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { format, intervalToDuration, differenceInHours, differenceInSeconds } from 'date-fns';
 import { db, auth } from './../firebase';
 import { addDoc, collection, getDocs, orderBy, limit, query } from 'firebase/firestore';
+import { Grid } from '@mui/material';
 
 export default function ClockIn() {
   const [user, setUser] = useState(null);
@@ -10,7 +11,7 @@ export default function ClockIn() {
   const [elapsedTime, setElapsedTime] = useState(0)
 
 
-  // const clockInTime = format(new Date(), 'Pp');
+
 
   const previousStatus = async () => {
     const collectionRef = collection(db, `${auth.currentUser.displayName}`);
@@ -71,8 +72,10 @@ export default function ClockIn() {
 
   return (
     <div>
-      Welcome !
-      <button onClick={() => handleClockIn()}>Clock in</button>
+      <Grid container>
+        Welcome {auth.currentUser.displayName}!
+        <button onClick={() => handleClockIn()}>Clock in</button>
+      </Grid>
     </div>
   );
 }
