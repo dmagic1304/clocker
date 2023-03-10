@@ -57,20 +57,36 @@
 
 ## Technologies Used
 
-* Application development still in progress
+* JavaScript
+* React
+* Materieal UI
+* Firebase
+* NoSQL
+* FullCalendar
 
 ## Description
 
-The application will allow the user (employee) to clock-in/clock-out at the place of work, and get an overview of their work hours and schedule
+The application will allow the user (employee) to clock-in/clock-out at the place of work, and get an overview of their work hours and schedule. 
+Each user will have a unique user account with mentioned data. In further development, the application should have different roles based on authentication
+and supervisors will be able to schedule work shifts and time off for all the employees in the team.
 
 ## Setup/Installation Requirements
 
-* Application development still in progress
+* Clone this repo to your workspace.
+* Navigate to the top level of the directory.
+* In the root directory of the project, run this command to install all packages listed in the package.json:
+```
+$ npm install
+```
+* Then, to build and serve the project, run: 
+```
+$ npm run start
+```
 
 
 ## Known Bugs
 
-* Application development still in progress
+* Application is still in development and does not have all the functions intended
 
 ## License
 
